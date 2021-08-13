@@ -1,5 +1,6 @@
 namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.QueryHandlers
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.QueryHandler
 
         public async Task<IReadOnlyList<WeatherForecast>> Handle(GetWeatherForecasts request, CancellationToken cancellationToken)
         {
+            if (request is null)
+            {
+                throw new NullReferenceException(nameof(request));
+            }
+
             var source = await this.service.Get(cancellationToken);
             var result = this.mapper.Map<IReadOnlyList<WeatherForecast>>(source);
             return result;
