@@ -457,3 +457,4 @@ $RECYCLE.BIN/
 ## SonarScanner
 ##
 */.sonarqube/*
+**/coverage.opencover.xml

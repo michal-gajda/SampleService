@@ -22,7 +22,7 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.QueryHandler
         {
             if (request is null)
             {
-                throw new NullReferenceException(nameof(request));
+                throw new ArgumentNullException(nameof(request));
             }
 
             var source = await this.service.Get(cancellationToken);

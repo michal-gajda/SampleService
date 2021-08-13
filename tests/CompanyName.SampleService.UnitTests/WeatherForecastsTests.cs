@@ -78,8 +78,8 @@ namespace CompanyName.SampleService.UnitTests
         [TestMethod]
         public async Task TestException()
         {
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<WeatherForecastProfile>());
-            var mapper = config.CreateMapper();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<WeatherForecastProfile>());
+            var mapper = configuration.CreateMapper();
 
             var weatherForecasts = new List<WeatherForecast>
             {
@@ -106,7 +106,7 @@ namespace CompanyName.SampleService.UnitTests
             Func<Task<IReadOnlyList<CompanyName.SampleService.Application.ViewModels.WeatherForecast>>> action = async () => await handler.Handle(query, CancellationToken.None);
 
             //Assert
-            await action.Should().ThrowExactlyAsync<NullReferenceException>();
+            await action.Should().ThrowExactlyAsync<ArgumentNullException>();
         }
     }
 }

@@ -1,0 +1,27 @@
+version: "3.9"
+networks:
+  localdev:
+    external: true
+services:
+  api:
+    build: .
+    image: gajdaltd/sampleservice:local
+    depends_on:
+      - graylog
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      SERILOG__MINIMUMLEVEL__DEFAULT: "Debug"
+      SERILOG__WRITETO__1__ARGS__HOSTNAMEORADDRESS: "graylog"
+    ports:
+      - "5000:5080"
+    networks:
+      - localdev
+    restart: unless-stopped
+  graylog:
+    image: datalust/seq-input-gelf:latest
+    environment:
+      SEQ_ADDRESS: "https://seq.gajda.co.uk"
+      SEQ_API_KEY: "vRruolkTjyLSC6RZx8AM"
+    networks:
+        - localdev
+    restart: unless-stopped

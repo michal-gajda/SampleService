@@ -1,0 +1,13 @@
+*.md
+bin/
+obj/
+.idea/
+.vscode/
+.cache
+.dockerignore
+.env
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+Makefile
