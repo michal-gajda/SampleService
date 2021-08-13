@@ -1,12 +1,14 @@
 namespace CompanyName.SampleService.WebApi
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Hosting;
     using Serilog;
 
+    [ExcludeFromCodeCoverage]
     public static class Program
     {
         private const int EXIT_FAILURE = 1;

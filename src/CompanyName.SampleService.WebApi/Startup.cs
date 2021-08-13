@@ -1,5 +1,6 @@
 namespace CompanyName.SampleService.WebApi
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using CompanyName.SampleService.Application;
     using CompanyName.SampleService.Infrastructure;
@@ -13,6 +14,7 @@ namespace CompanyName.SampleService.WebApi
     using Microsoft.OpenApi.Models;
     using Serilog;
 
+    [ExcludeFromCodeCoverage]
     public sealed class Startup
     {
         public Startup(IConfiguration configuration) =>

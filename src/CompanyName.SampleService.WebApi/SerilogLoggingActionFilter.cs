@@ -1,10 +1,12 @@
 namespace CompanyName.SampleService.WebApi
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using Microsoft.AspNetCore.Mvc.Filters;
     using Serilog;
 
+    [ExcludeFromCodeCoverage]
     public sealed class SerilogLoggingActionFilter : IActionFilter
     {
         private readonly IDiagnosticContext diagnosticContext;

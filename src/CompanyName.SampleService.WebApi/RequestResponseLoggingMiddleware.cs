@@ -1,5 +1,6 @@
 namespace CompanyName.SampleService.WebApi
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,7 @@ namespace CompanyName.SampleService.WebApi
     using Microsoft.Extensions.Logging;
     using Microsoft.IO;
 
+    [ExcludeFromCodeCoverage]
     internal sealed class RequestResponseLoggingMiddleware
     {
         private readonly ILogger logger;
@@ -73,6 +75,7 @@ namespace CompanyName.SampleService.WebApi
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal static class RequestResponseLoggingMiddlewareExtensions
     {
         public static IApplicationBuilder UseRequestResponseLogging(this IApplicationBuilder builder)
