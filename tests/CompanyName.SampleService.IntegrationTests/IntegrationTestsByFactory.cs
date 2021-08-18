@@ -1,64 +1,59 @@
 namespace CompanyName.SampleService.IntegrationTests
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Net;
     using System.Net.Http;
     using System.Reflection;
     using System.Threading.Tasks;
+    using System.Text.Json;
     using FluentAssertions;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Options;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using CompanyName.SampleService.WebApi;
-    using Serilog;
+    using CompanyName.SampleService.Application.ViewModels;
 
     [TestClass]
-    public class IntegrationTests
+    public sealed class IntegrationTestsByFactory
     {
-        private readonly HttpClient client;
-        private readonly TestServer server;
+        private readonly WebApplicationFactory<Startup> factory;
         public TestContext TestContext { get; set; }
 
-        public IntegrationTests()
+        public IntegrationTestsByFactory()
         {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
-                .Build();
-
-            var build = new WebHostBuilder()
-                .UseContentRoot(Path.GetDirectoryName(Assembly.GetAssembly(typeof(Startup)).Location))
-                .UseConfiguration(configuration)
-                .ConfigureTestServices(services =>
-                {
-                })
-                .UseSerilog()
-                .UseStartup<Startup>();
-            this.server = new TestServer(build);
-            this.client = this.server.CreateClient();
+            this.factory = new WebApplicationFactory<Startup>();
         }
 
         [TestMethod]
         public async Task WeatherForecastControllerTest()
         {
             //Arrange
+            var client = factory.CreateClient();
 
             //Act
-            var json = await this.client.GetStringAsync("/WeatherForecast");
+            var response = await client.GetAsync("/WeatherForecast");
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
 
             //Assert
             TestContext.WriteLine(json);
             json.Should().NotBeNullOrWhiteSpace();
+            var @object = JsonSerializer.Deserialize<IReadOnlyList<WeatherForecast>>(json);
+            @object.Should().NotBeNullOrEmpty();
         }
 
         [TestMethod]
         public async Task WeatherForecastControllerEndpointNotFoundTest()
         {
             //Arrange
+            var client = factory.CreateClient();
 
             //Act
-            var response = await this.client.GetAsync("/NotExists");
+            var response = await client.GetAsync("/NotExists");
 
             //Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -68,9 +63,10 @@ namespace CompanyName.SampleService.IntegrationTests
         public async Task HealthChecksTest()
         {
             //Arrange
+            var client = factory.CreateClient();
 
             //Act
-            var response = await this.client.GetStringAsync("/health");
+            var response = await client.GetStringAsync("/health");
 
             //Assert
             response.Should().NotBeNullOrWhiteSpace();

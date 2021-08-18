@@ -1,0 +1,44 @@
+# wsl -d docker-desktop sysctl -w vm.max_map_count=262144
+version: "3.9"
+networks:
+    sonarqube-net:
+        driver: bridge
+volumes:
+    postgresql-data:
+        driver: local
+    sonarqube-ce-data:
+        driver: local
+    sonarqube-ce-extensions:
+        driver: local
+    sonarqube-ce-logs:
+        driver: local
+services:
+    postgresql:
+        image: postgres:latest
+        restart: unless-stopped
+        environment:
+            - POSTGRES_DB=sonar
+            - POSTGRES_USER=sonar
+            - POSTGRES_PASSWORD=sonar
+        networks:
+            - sonarqube-net
+        volumes:
+            - postgresql-data:/var/lib/postgresql/data
+    sonarqube:
+        image: sonarqube:lts
+        restart: unless-stopped
+        depends_on:
+            - postgresql
+        environment:
+            - SONAR_JDBC_PASSWORD=sonar
+            - SONAR_JDBC_URL=jdbc:postgresql://postgresql:5432/sonar
+            - SONAR_JDBC_USERNAME=sonar
+            - TZ=Europe/London
+        networks:
+            - sonarqube-net
+        ports:
+            - "9000:9000"
+        volumes:
+            - sonarqube-ce-data:/opt/sonarqube/data
+            - sonarqube-ce-extensions:/opt/sonarqube/extensions
+            - sonarqube-ce-logs:/opt/sonarqube/logs
