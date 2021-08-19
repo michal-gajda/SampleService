@@ -1,9 +1,8 @@
-namespace CompanyName.SampleService.WebApi
+namespace CompanyName.SampleService.WebApi.Middlewares
 {
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
     using Microsoft.IO;
@@ -72,15 +71,6 @@ namespace CompanyName.SampleService.WebApi
             } while (readChunkLength > 0);
 
             return textWriter.ToString();
-        }
-    }
-
-    [ExcludeFromCodeCoverage]
-    internal static class RequestResponseLoggingMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseRequestResponseLogging(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<RequestResponseLoggingMiddleware>();
         }
     }
 }

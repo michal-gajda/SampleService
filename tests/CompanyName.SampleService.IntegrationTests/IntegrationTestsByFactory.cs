@@ -1,21 +1,14 @@
 namespace CompanyName.SampleService.IntegrationTests
 {
     using System.Collections.Generic;
-    using System.IO;
     using System.Net;
-    using System.Net.Http;
-    using System.Reflection;
-    using System.Threading.Tasks;
     using System.Text.Json;
-    using FluentAssertions;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc.Testing;
-    using Microsoft.AspNetCore.TestHost;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Options;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using CompanyName.SampleService.WebApi;
+    using System.Threading.Tasks;
     using CompanyName.SampleService.Application.ViewModels;
+    using CompanyName.SampleService.WebApi;
+    using FluentAssertions;
+    using Microsoft.AspNetCore.Mvc.Testing;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public sealed class IntegrationTestsByFactory

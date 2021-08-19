@@ -1,4 +1,4 @@
-namespace CompanyName.SampleService.WebApi
+namespace CompanyName.SampleService.WebApi.Filters
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -7,6 +7,7 @@ namespace CompanyName.SampleService.WebApi
     using Serilog;
 
     [ExcludeFromCodeCoverage]
+    // ReSharper disable once ClassNeverInstantiated.Global
     public sealed class SerilogLoggingActionFilter : IActionFilter
     {
         private readonly IDiagnosticContext diagnosticContext;

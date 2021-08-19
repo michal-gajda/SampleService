@@ -4,6 +4,8 @@ namespace CompanyName.SampleService.WebApi
     using System.Reflection;
     using CompanyName.SampleService.Application;
     using CompanyName.SampleService.Infrastructure;
+    using CompanyName.SampleService.WebApi.Extensions;
+    using CompanyName.SampleService.WebApi.Filters;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

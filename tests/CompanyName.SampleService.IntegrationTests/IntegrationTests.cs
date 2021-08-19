@@ -5,12 +5,12 @@ namespace CompanyName.SampleService.IntegrationTests
     using System.Net.Http;
     using System.Reflection;
     using System.Threading.Tasks;
+    using CompanyName.SampleService.WebApi;
     using FluentAssertions;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.Configuration;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using CompanyName.SampleService.WebApi;
     using Serilog;
 
     [TestClass]

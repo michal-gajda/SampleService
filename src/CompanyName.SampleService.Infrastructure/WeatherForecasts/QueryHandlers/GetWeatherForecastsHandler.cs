@@ -4,10 +4,10 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.QueryHandler
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using AutoMapper;
     using CompanyName.SampleService.Application.Queries;
     using CompanyName.SampleService.Application.ViewModels;
     using CompanyName.SampleService.Infrastructure.WeatherForecasts.Interfaces;
-    using AutoMapper;
     using MediatR;
 
     internal sealed class GetWeatherForecastsHandler : IRequestHandler<GetWeatherForecasts, IReadOnlyList<WeatherForecast>>

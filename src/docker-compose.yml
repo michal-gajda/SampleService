@@ -1,7 +1,8 @@
 version: "3.9"
 networks:
-  localdev:
-    external: true
+  sampleservice-net:
+    driver: bridge
+    name: sampleservice
 services:
   api:
     build: .
@@ -15,7 +16,7 @@ services:
     ports:
       - "5000:5080"
     networks:
-      - localdev
+      - sampleservice-net
     restart: unless-stopped
   graylog:
     image: datalust/seq-input-gelf:latest
@@ -23,5 +24,5 @@ services:
       SEQ_ADDRESS: "https://seq.gajda.co.uk"
       SEQ_API_KEY: "vRruolkTjyLSC6RZx8AM"
     networks:
-        - localdev
+        - sampleservice-net
     restart: unless-stopped
