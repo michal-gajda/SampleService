@@ -11,6 +11,7 @@ namespace CompanyName.SampleService.WebApi.Filters
     public sealed class SerilogLoggingActionFilter : IActionFilter
     {
         private readonly IDiagnosticContext diagnosticContext;
+
         public SerilogLoggingActionFilter(IDiagnosticContext diagnosticContext)
         {
             this.diagnosticContext = diagnosticContext
@@ -19,7 +20,7 @@ namespace CompanyName.SampleService.WebApi.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            Contract.Assert(context != null);
+            Contract.Assert(context is not null);
             this.diagnosticContext.Set("ActionId", context.ActionDescriptor.Id);
             this.diagnosticContext.Set("ActionName", context.ActionDescriptor.DisplayName);
             this.diagnosticContext.Set("RouteData", context.ActionDescriptor.RouteValues);

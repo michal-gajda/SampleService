@@ -1,0 +1,22 @@
+branches:
+  master:
+    regex: ^master$
+    is-mainline: true
+    is-release-branch: true
+  develop:
+    regex: ^develop$
+    source-branches:
+      - master
+  feature:
+    regex: ^feature?[/-]
+    source-branches:
+      - develop
+ignore:
+  sha: []
+assembly-informational-format: "{Major}.{Minor}.{Patch}-{ShortSha}"
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-format: "{Major}.{Minor}.{Patch}-{ShortSha}"
+assembly-versioning-format: "{Major}.{Minor}.{Patch}-{ShortSha}"
+commit-date-format: "yyyy-MM-dd"
+continuous-delivery-fallback-tag: ""
+merge-message-formats: {}

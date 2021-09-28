@@ -25,7 +25,7 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.QueryHandler
                 throw new ArgumentNullException(nameof(request));
             }
 
-            var source = await this.service.Get(cancellationToken);
+            var source = await this.service.GetAsync(request.Count, cancellationToken);
             var result = this.mapper.Map<IReadOnlyList<WeatherForecast>>(source);
             return result;
         }

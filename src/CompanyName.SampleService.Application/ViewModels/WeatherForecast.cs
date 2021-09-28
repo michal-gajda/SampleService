@@ -1,12 +1,13 @@
 namespace CompanyName.SampleService.Application.ViewModels
 {
     using System;
+    using System.Text.Json.Serialization;
 
     public sealed record WeatherForecast
     {
-        public DateTime Date { get; init; }
-        public int TemperatureC { get; init; }
-        public int TemperatureF { get; init; }
-        public string Summary { get; init; }
+        [JsonPropertyName("date")] public DateTime Date { get; init; }
+        [JsonPropertyName("temperatureInC")] public int TemperatureC { get; init; }
+        [JsonPropertyName("temperatureInF")] public int TemperatureF { get; init; }
+        [JsonPropertyName("summary")] public string Summary { get; init; } = string.Empty;
     }
 }
