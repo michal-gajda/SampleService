@@ -9,14 +9,16 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.QueryHandler
     using CompanyName.SampleService.Application.ViewModels;
     using CompanyName.SampleService.Infrastructure.WeatherForecasts.Interfaces;
     using MediatR;
+    using Microsoft.Extensions.Logging;
 
     internal sealed class GetWeatherForecastsHandler : IRequestHandler<GetWeatherForecasts, IReadOnlyList<WeatherForecast>>
     {
+        private readonly ILogger<GetWeatherForecastsHandler> logger;
         private readonly IMapper mapper;
         private readonly IWeatherForecastService service;
 
-        public GetWeatherForecastsHandler(IMapper mapper, IWeatherForecastService service) =>
-            (this.mapper, this.service) = (mapper, service);
+        public GetWeatherForecastsHandler(ILogger<GetWeatherForecastsHandler> logger, IMapper mapper, IWeatherForecastService service) =>
+            (this.logger, this.mapper, this.service) = (logger, mapper, service);
 
         public async Task<IReadOnlyList<WeatherForecast>> Handle(GetWeatherForecasts request, CancellationToken cancellationToken)
         {
@@ -25,7 +27,7 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.QueryHandler
                 throw new ArgumentNullException(nameof(request));
             }
 
-            var source = await this.service.Get(cancellationToken);
+            var source = await this.service.GetAsync(request.Count, cancellationToken);
             var result = this.mapper.Map<IReadOnlyList<WeatherForecast>>(source);
             return result;
         }

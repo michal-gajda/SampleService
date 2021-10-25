@@ -7,6 +7,6 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.Interfaces
 
     internal interface IWeatherForecastService
     {
-        Task<IReadOnlyList<WeatherForecast>> Get(CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<WeatherForecast>> GetAsync(int count = default, CancellationToken cancellationToken = default);
     }
 }

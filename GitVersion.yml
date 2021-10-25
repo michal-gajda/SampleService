@@ -1,0 +1,20 @@
+assembly-informational-format: "{Major}.{Minor}.{Patch}-{ShortSha}"
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-format: "{Major}.{Minor}.{Patch}-{ShortSha}"
+branches:
+  master:
+    regex: ^master$
+    is-mainline: true
+  develop:
+    regex: ^develop$
+    source-branches:
+      - master
+  feature:
+    increment: Minor
+    regex: ^feature?[/-]
+    source-branches:
+      - develop
+commit-date-format: "yyyy-MM-dd"
+ignore:
+  sha: []
+mode: ContinuousDelivery

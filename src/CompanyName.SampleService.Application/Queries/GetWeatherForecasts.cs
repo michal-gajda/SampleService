@@ -6,5 +6,6 @@ namespace CompanyName.SampleService.Application.Queries
 
     public sealed record GetWeatherForecasts : IRequest<IReadOnlyList<WeatherForecast>>
     {
+        public int Count { get; init; } = default;
     }
 }

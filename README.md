@@ -41,6 +41,7 @@ Add required libraries to the solutions.
 Installing *MediatR.Extensions.Microsoft.DependencyInjection* insite *Application* project
 ```dotnetcli
 dotnet add package MediatR.Extensions.Microsoft.DependencyInjection
+dotnet add package Microsoft.Extensions.Logging.Abstractions
 ```
 ####Create *DependencyInjection.cs* file
 
@@ -69,6 +70,7 @@ Install *Microsoft.Extensions.Configuration.Abstractions* and *Microsoft.Extensi
 cd ./CompanyName.SampleService.Infrastructure
 dotnet add package Microsoft.Extensions.Configuration.Abstractions
 dotnet add package Microsoft.Extensions.Configuration.Binder
+dotnet add package Microsoft.Extensions.Options.ConfigurationExtensions
 ```
 
 ####Create *DependencyInjection.cs* file
