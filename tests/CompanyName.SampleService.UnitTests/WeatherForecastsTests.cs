@@ -54,10 +54,10 @@ namespace CompanyName.SampleService.UnitTests
             };
 
             var service = new Mock<IWeatherForecastService>();
-            service.Setup(m => m.Get(CancellationToken.None)).ReturnsAsync(weatherForecasts);
+            service.Setup(m => m.GetAsync(2, CancellationToken.None)).ReturnsAsync(weatherForecasts);
 
             //Arrange
-            var query = new GetWeatherForecasts();
+            var query = new GetWeatherForecasts{ Count = 2, };
             var handler = new GetWeatherForecastsHandler(mapper, service.Object);
 
             //Act
@@ -96,7 +96,7 @@ namespace CompanyName.SampleService.UnitTests
             };
 
             var service = new Mock<IWeatherForecastService>();
-            service.Setup(m => m.Get(CancellationToken.None)).ReturnsAsync(weatherForecasts);
+            service.Setup(m => m.GetAsync(2, CancellationToken.None)).ReturnsAsync(weatherForecasts);
 
             //Arrange
             GetWeatherForecasts query = null;

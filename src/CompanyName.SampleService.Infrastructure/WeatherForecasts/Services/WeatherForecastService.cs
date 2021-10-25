@@ -11,6 +11,9 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.Services
 
     internal sealed class WeatherForecastService : IWeatherForecastService
     {
+        private const int MaximumTemperature = 55;
+        private const int MinimumTemperature = -20;
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing",
@@ -30,7 +33,7 @@ namespace CompanyName.SampleService.Infrastructure.WeatherForecasts.Services
             var result = Enumerable.Range(1, count).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
-                TemperatureC = RandomNumberGenerator.GetInt32(-20, 55),
+                TemperatureC = RandomNumberGenerator.GetInt32(MinimumTemperature, MaximumTemperature),
                 Summary = Summaries[RandomNumberGenerator.GetInt32(Summaries.Length)]
             })
             .ToList();

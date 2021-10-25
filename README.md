@@ -20,7 +20,7 @@ dotnet new sln --name CompanyName.SampleService
 dotnet new classlib --output CompanyName.SampleService.Application
 dotnet new classlib --output CompanyName.SampleService.Domain
 dotnet new classlib --output CompanyName.SampleService.Infrastructure
-dotnet new webapi --output CompanyName.SampleService.WebApi
+dotnet new webapi --output CompanyName.SampleService.WebApi --no-https
 
 dotnet sln add ./CompanyName.SampleService.Application/CompanyName.SampleService.Application.csproj
 dotnet sln add ./CompanyName.SampleService.Domain/CompanyName.SampleService.Domain.csproj
@@ -43,7 +43,7 @@ Installing *MediatR.Extensions.Microsoft.DependencyInjection* insite *Applicatio
 dotnet add package MediatR.Extensions.Microsoft.DependencyInjection
 dotnet add package Microsoft.Extensions.Logging.Abstractions
 ```
-####Create *DependencyInjection.cs* file
+#### Create *DependencyInjection.cs* file
 
 ```csharp
 namespace CompanyName.SampleService.Application
@@ -73,7 +73,7 @@ dotnet add package Microsoft.Extensions.Configuration.Binder
 dotnet add package Microsoft.Extensions.Options.ConfigurationExtensions
 ```
 
-####Create *DependencyInjection.cs* file
+#### Create *DependencyInjection.cs* file
 ```csharp
 namespace CompanyName.SampleService.Infrastructure
 {

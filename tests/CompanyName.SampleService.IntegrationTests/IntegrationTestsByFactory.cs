@@ -28,7 +28,7 @@ namespace CompanyName.SampleService.IntegrationTests
             var client = factory.CreateClient();
 
             //Act
-            var response = await client.GetAsync("/WeatherForecast");
+            var response = await client.GetAsync("/WeatherForecast?count=5");
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
 

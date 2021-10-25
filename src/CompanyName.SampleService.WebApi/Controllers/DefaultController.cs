@@ -6,8 +6,7 @@ namespace CompanyName.SampleService.WebApi.Controllers
     [ExcludeFromCodeCoverage]
     public sealed class DefaultController : Controller
     {
-        [Route(""), HttpGet]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [ApiExplorerSettings(IgnoreApi = true), HttpGet, Route("")]
         public RedirectResult RedirectToSwaggerUi()
         {
             return Redirect("swagger/index.html");
