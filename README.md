@@ -156,7 +156,7 @@ namespace CompanyName.SampleService.WebApi
 ```
 ### Serilog
 
-Add logger infrastructure to the solution
+Add logger infrastructure to the WebApi project
 
 ```dotnetcli
 dotnet add package Microsoft.IO.RecyclableMemoryStream
