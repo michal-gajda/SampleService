@@ -822,15 +822,6 @@ namespace CompanyName.SampleService.Infrastructure.SampleChildService.Models
     }
 }
 ```
-#### Create *CompanyName/SampleService/Infrastructure/SampleChildService/Models/SampleChildResponse.cs* file
-```csharp
-namespace CompanyName.SampleService.Infrastructure.SampleChildService.Models
-{
-    internal sealed record SampleChildResponse
-    {
-    }
-}
-```
 #### Create *CompanyName/SampleService/Infrastructure/SampleChildService/Interfaces/ISampleChildService.cs* file
 ```csharp
 namespace CompanyName.SampleService.Infrastructure.SampleChildService.Interfaces
